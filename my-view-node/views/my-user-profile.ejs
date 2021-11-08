@@ -1,0 +1,68 @@
+<%- include("./partials/header") %>
+    <div class="row">
+        <div class="container">
+            <div class="col-lg-4">
+                <form method="POST" action="/batch-add/<%= foundUser._id %>">
+                    <label for="exampleInputEmail1">Select Batch</label>
+                    <select class="form-control" name="batch">
+				  <option value="2015 - 2018 ">2015 - 2018 </option>
+				  <option value="2013-2017">2013-2017</option>
+				  <option value="2014-2018">2014-2018</option>
+				  <option value="2015-2019">2015-2019</option>
+				  <option value="2016-2020">2016-2020</option>
+				</select>
+                    <br>
+                    <label for="exampleInputEmail1">Select Subject</label>
+                    <select class="form-control" name="sem">
+				  <option value="SEM1">SEM1</option>
+				  <option value="SEM2">SEM2</option>
+				  <option value="SEM3">SEM3</option>
+				</select>
+                    <br>
+                    <label for="exampleInputEmail1">Select Subject</label>
+                    <select class="form-control" name="subject">
+				  <option value="CY6151">CY6151</option>
+				  <option value="GE6151">GE6151</option>
+				  <option value="GE6152">GE6152</option>
+				</select>
+                    <br>
+                    <button class="btn btn-primary">Add Subject</button>
+                </form><br>
+                <form method="POST" action="/user-roll-get">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Enter Student`s Registration Number</label>
+                        <input type="number" class="form-control" name="regno" id="exampleInputEmail1" placeholder="eg ( 913115104085 )">
+                    </div>
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </form>
+            </div>
+            <div class="col-lg-8">
+                <h3>Name:
+                    <%= foundUser.username %>
+                </h3>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Batch</th>
+                        <th>Semester</th>
+                        <th>Subject</th>
+                    </tr>
+                    <% for(var i=0; i < foundUser.batch.length; i++) { %>
+
+                        <tr>
+                            <td>
+                                <a href="/staff-mark-view/<%= foundUser.batch[i].batch %>/<%= foundUser.batch[i].subject %>/<%= foundUser.batch[i].sem %>">
+                                    <%= foundUser.batch[i].batch %>
+                                </a>
+                            </td>
+                            <td>
+                                <%= foundUser.batch[i].sem %>
+                            </td>
+                            <td>
+                                <%= foundUser.batch[i].subject %>
+                            </td>
+                        </tr>
+                        <% } %>
+                </table>
+            </div>
+        </div>
+    </div>
